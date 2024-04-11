@@ -64,8 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
             map(iconname: Icon(Icons.email,color: Colors.black,size: 25,),name: 'Email'),
             map(iconname: Icon(Icons.notifications_active,color: Colors.black,size: 25,),name: 'Notification'),
             map(iconname: Icon(Icons.add,color: Colors.black,size: 25,),name: 'Add'),
-    ],
-      ),),
+          ],
+        ),),
     );
   }
 
