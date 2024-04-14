@@ -1,9 +1,7 @@
-import 'package:counter_app/counter_app.dart';
 import 'package:flutter/material.dart';
-
 void main()
 {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,7 +14,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -29,160 +26,139 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        leading: Icon(Icons.menu,color: Colors.white,),
         centerTitle: true,
-        title: Text(
-          'Chess',style: TextStyle(
+        title: const Text(
+          'SPLITTER',style: TextStyle(
+          fontSize: 30,
           color: Colors.white,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w800,
         ),
         ),
+        backgroundColor: Colors.black,
+        leading: const Icon(Icons.account_circle,color: Colors.white,),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          border: Border.all(width: 0.32,color: Colors.black)
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            row1(),
-            row2(),
-            row1(),
-            row2(),
-            row1(),
-            row2(),
-            row1(),
-            row2(),
-          ],
-        ),
-      ),
+      backgroundColor: const Color(0xFFff9800),
+      body: Column(
+        children: [
+          Container(
+            alignment: Alignment.center,
+            height: 392.3,
+            decoration: const BoxDecoration(
+              color: Color(0xFFff9800),
+            ),
+            child:SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  const SizedBox(height: 10,),
+                  horizontal_container(('1')),
+                  const SizedBox(height: 10,),
+                  horizontal_container(('2')),
+                  const SizedBox(height: 10,),
+                  horizontal_container(('3')),
+                  const SizedBox(height: 10,),
+                  horizontal_container(('4')),
+                  const SizedBox(height: 10,),
+                  horizontal_container(('5')),
+                  const SizedBox(height: 10,),
+                  horizontal_container(('6')),
+                  const SizedBox(height: 10,),
+                  horizontal_container(('7')),
+                  const SizedBox(height: 10,),
+                  horizontal_container(('8')),
+                  const SizedBox(height: 10,),
+                ],
+              ),
+            ),
+          ),
+          Container(
+            alignment: Alignment.center,
+            height: 392.3,
+            decoration: const BoxDecoration(
+              color: Color(0xFFff5722),
+            ),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
+              child: Row(
+                children: [
+                  const SizedBox(width: 10,),
+                  veritcal_container('1'),
+                  const SizedBox(width: 10,),
+                  veritcal_container('2'),
+                  const SizedBox(width: 10,),
+                  veritcal_container('3'),
+                  const SizedBox(width: 10,),
+                  veritcal_container('4'),
+                  const SizedBox(width: 10,),
+                  veritcal_container('5'),
+                  const SizedBox(width: 10,),
+                  veritcal_container('6'),
+                  const SizedBox(width: 10,),
+                  veritcal_container('7'),
+                  const SizedBox(width: 10,),
+                  veritcal_container('8'),
+                  const SizedBox(width: 10,),
+                ],
+              ),
+            ),
+          ),
+        ],
+      )
     );
   }
 
-  Row row2() {
-    return Row(
-          children: [
-            Container(
-              height: 49,
-              width: 49,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade400,
-              ),
+  Container veritcal_container(text) {
+    return Container(
+            height: 370,
+            width: 100,
+            decoration: BoxDecoration(
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 2,
+                  spreadRadius: 4,
+                ),
+              ],
+              color: const Color(0xFF9e9e9e),
+              borderRadius: BorderRadius.circular(20),
             ),
-            Container(
-              height: 49,
-              width: 49,
-              decoration: BoxDecoration(
+            child: Center(
+              child: Text(
+                '$text',style: const TextStyle(
                 color: Colors.black,
+                fontWeight: FontWeight.w800,
+                fontSize: 30,
+              ),
               ),
             ),
-            Container(
-              height: 49,
-              width: 49,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade400,
-              ),
-            ),
-            Container(
-              height: 49,
-              width: 49,
-              decoration: BoxDecoration(
-                color: Colors.black,
-              ),
-            ),
-            Container(
-              height: 49,
-              width: 49,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade400,
-              ),
-            ),
-            Container(
-              height: 49,
-              width: 49,
-              decoration: BoxDecoration(
-                color: Colors.black,
-              ),
-            ),
-            Container(
-              height: 49,
-              width: 49,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade400,
-              ),
-            ),
-            Container(
-              height: 49,
-              width: 49,
-              decoration: BoxDecoration(
-                color: Colors.black,
-              ),
-            ),
-          ],
-        );
+          );
   }
 
-  Row row1() {
-    return Row(
-          children: [
-            Container(
-              height: 49,
-              width: 49,
-              decoration: BoxDecoration(
+  Container horizontal_container(text) {
+    return Container(
+            height: 100,
+            width: 370,
+            decoration: BoxDecoration(
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 2,
+                  spreadRadius: 4,
+                ),
+              ],
+              borderRadius: BorderRadius.circular(20),
+              color: const Color(0xFFffc107),
+            ),
+            child: Center(
+              child: Text(
+                '$text',style: const TextStyle(
                 color: Colors.black,
+                fontWeight: FontWeight.w800,
+                fontSize: 30,
+              ),
               ),
             ),
-            Container(
-              height: 49,
-              width: 49,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade400,
-              ),
-            ),
-            Container(
-              height: 49,
-              width: 49,
-              decoration: BoxDecoration(
-                color: Colors.black,
-              ),
-            ),
-            Container(
-              height: 49,
-              width: 49,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade400,
-              ),
-            ),
-            Container(
-              height: 49,
-              width: 49,
-              decoration: BoxDecoration(
-                color: Colors.black,
-              ),
-            ),
-            Container(
-              height: 49,
-              width: 49,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade400,
-              ),
-            ),
-            Container(
-              height: 49,
-              width: 49,
-              decoration: BoxDecoration(
-                color: Colors.black,
-              ),
-            ),
-            Container(
-              height: 49,
-              width: 49,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade400,
-              ),
-            ),
-          ],
-        );
+          );
   }
 }
