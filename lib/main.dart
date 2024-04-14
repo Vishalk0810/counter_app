@@ -1,7 +1,11 @@
+import 'package:counter_app/chess.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
 void main()
 {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -26,139 +30,175 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Icon(Icons.menu,),
         centerTitle: true,
-        title: const Text(
-          'SPLITTER',style: TextStyle(
-          fontSize: 30,
-          color: Colors.white,
-          fontWeight: FontWeight.w800,
+        title: Text(
+          'Icons Editor',style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w700,
         ),
         ),
-        backgroundColor: Colors.black,
-        leading: const Icon(Icons.account_circle,color: Colors.white,),
       ),
-      backgroundColor: const Color(0xFFff9800),
-      body: Column(
-        children: [
-          Container(
-            alignment: Alignment.center,
-            height: 392.3,
-            decoration: const BoxDecoration(
-              color: Color(0xFFff9800),
-            ),
-            child:SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(
-                children: [
-                  const SizedBox(height: 10,),
-                  horizontal_container(('1')),
-                  const SizedBox(height: 10,),
-                  horizontal_container(('2')),
-                  const SizedBox(height: 10,),
-                  horizontal_container(('3')),
-                  const SizedBox(height: 10,),
-                  horizontal_container(('4')),
-                  const SizedBox(height: 10,),
-                  horizontal_container(('5')),
-                  const SizedBox(height: 10,),
-                  horizontal_container(('6')),
-                  const SizedBox(height: 10,),
-                  horizontal_container(('7')),
-                  const SizedBox(height: 10,),
-                  horizontal_container(('8')),
-                  const SizedBox(height: 10,),
-                ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Center(
+              child: Container(
+                margin: EdgeInsets.all(10),
+                height: 270,
+                width: 370,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 2,
+                      spreadRadius: 4,
+                    )
+                  ],
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.black,
+                ),
+                child: Icon(selectIcons,color: selectColor),
               ),
             ),
-          ),
-          Container(
-            alignment: Alignment.center,
-            height: 392.3,
-            decoration: const BoxDecoration(
-              color: Color(0xFFff5722),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 10),
+              height: 70,
+              width: 370,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 2,
+                    spreadRadius: 4,
+                  )
+                ],
+                borderRadius: BorderRadius.circular(15),
+                color: Colors.white,
+              ),
+              child: Center(
+                child: const Text(
+                  'Select Colors',style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 25,
+                  fontWeight: FontWeight.w700,
+                ),
+                ),
+              ),
             ),
-            child: SingleChildScrollView(
+            SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              physics: const BouncingScrollPhysics(),
+              physics: BouncingScrollPhysics(),
               child: Row(
-                children: [
-                  const SizedBox(width: 10,),
-                  veritcal_container('1'),
-                  const SizedBox(width: 10,),
-                  veritcal_container('2'),
-                  const SizedBox(width: 10,),
-                  veritcal_container('3'),
-                  const SizedBox(width: 10,),
-                  veritcal_container('4'),
-                  const SizedBox(width: 10,),
-                  veritcal_container('5'),
-                  const SizedBox(width: 10,),
-                  veritcal_container('6'),
-                  const SizedBox(width: 10,),
-                  veritcal_container('7'),
-                  const SizedBox(width: 10,),
-                  veritcal_container('8'),
-                  const SizedBox(width: 10,),
-                ],
+                  children: List.generate(colorlist.length, (index) => GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectColor = colorlist[index];
+                        });
+                      },
+                      child: c1(Color : colorlist[index])))
               ),
             ),
-          ),
-        ],
-      )
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 10),
+              height: 70,
+              width: 370,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 2,
+                    spreadRadius: 4,
+                  )
+                ],
+                borderRadius: BorderRadius.circular(15),
+                color: Colors.white,
+              ),
+              child: Center(
+                child: const Text(
+                  'Select Icons',style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 25,
+                  fontWeight: FontWeight.w700,
+                ),
+                ),
+              ),
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              physics: BouncingScrollPhysics(),
+              child: Row(
+                  children: List.generate(Ico.length, (index) => GestureDetector(
+                    onTap:() {
+                      setState(() {
+                        selectIcons = Ico[index];
+                      });
+                    },
+                    child: i1(vishal : Ico[index]),
+                  ))
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
-  Container veritcal_container(text) {
+  Container i1({required vishal}) {
     return Container(
-            height: 370,
-            width: 100,
-            decoration: BoxDecoration(
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 2,
-                  spreadRadius: 4,
-                ),
-              ],
-              color: const Color(0xFF9e9e9e),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Center(
-              child: Text(
-                '$text',style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w800,
-                fontSize: 30,
-              ),
-              ),
-            ),
-          );
+      margin: EdgeInsets.all(10),
+      height: 100,
+      width: 100,
+      decoration: BoxDecoration(
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 2,
+              spreadRadius: 4,
+            )
+          ],
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20)
+      ),
+      child: Icon(vishal),
+    );
   }
 
-  Container horizontal_container(text) {
+  Container c1({required Color}) {
     return Container(
-            height: 100,
-            width: 370,
-            decoration: BoxDecoration(
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 2,
-                  spreadRadius: 4,
-                ),
-              ],
-              borderRadius: BorderRadius.circular(20),
-              color: const Color(0xFFffc107),
-            ),
-            child: Center(
-              child: Text(
-                '$text',style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w800,
-                fontSize: 30,
-              ),
-              ),
-            ),
-          );
+      margin: EdgeInsets.all(10),
+      height: 100,
+      width: 100,
+      decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 2,
+              spreadRadius: 4,
+            )
+          ],
+          color: Color,
+          borderRadius: BorderRadius.circular(20)
+      ),
+    );
   }
 }
+
+List Ico = [
+  Icons.arrow_back_ios,
+  Icons.arrow_forward_ios,
+  Icons.alarm,
+  Icons.call,
+  Icons.search,
+  Icons.add,
+];
+List colorlist =[
+  Colors.tealAccent,
+  Colors.green,
+  Colors.blue,
+  Colors.amber,
+  Colors.red,
+  Colors.orange,
+];
+Color selectColor = Colors.black;
+IconData selectIcons = Icons.arrow_back_ios_new;
